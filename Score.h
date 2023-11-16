@@ -1,7 +1,7 @@
 #pragma once
 #include "gameObject.h"
 
-static enum SCORE_TYPE
+enum SCORE_TYPE
 {
 	TYPE_SCORE = 0,
 	TYPE_AMMO,

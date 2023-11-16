@@ -84,18 +84,6 @@
     <ClCompile Include="Goal.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
-    <ClCompile Include="bullet.cpp">
-      <Filter>ソースファイル\bullets</Filter>
-    </ClCompile>
-    <ClCompile Include="bulletSplit.cpp">
-      <Filter>ソースファイル\bullets</Filter>
-    </ClCompile>
-    <ClCompile Include="bulletVortex.cpp">
-      <Filter>ソースファイル\bullets</Filter>
-    </ClCompile>
-    <ClCompile Include="bulletZig.cpp">
-      <Filter>ソースファイル\bullets</Filter>
-    </ClCompile>
     <ClCompile Include="title.cpp">
       <Filter>ソースファイル\scenes</Filter>
     </ClCompile>
@@ -116,12 +104,6 @@
     </ClCompile>
     <ClCompile Include="life.cpp">
       <Filter>ソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Ebullet.cpp">
-      <Filter>ソースファイル\bullets</Filter>
-    </ClCompile>
-    <ClCompile Include="Weapon.cpp">
-      <Filter>ソースファイル\bullets</Filter>
     </ClCompile>
     <ClCompile Include="EntityEffect.cpp">
       <Filter>ソースファイル\Entity</Filter>
@@ -249,9 +231,6 @@
       <Filter>ヘッダーファイル\bullets</Filter>
     </ClInclude>
     <ClInclude Include="sprite.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Weapon.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
     <ClInclude Include="EntityEffect.h">

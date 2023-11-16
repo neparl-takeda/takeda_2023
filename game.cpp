@@ -22,15 +22,12 @@
 #include "Goal.h"
 #include "life.h"
 #include "audio.h"
-#include "EntityPlayer.h"
 #include "EntityPBullet.h"
 #include "EntityEnemy.h"
 #include "EntityEffect.h"
 #include "SkyDome.h"
 #include "DrawCollision.h"
 #include "fade.h"
-
-#include "Weapon.h"
 
 void SCENE_GAME::Init()
 {
@@ -42,17 +39,16 @@ void SCENE_GAME::Init()
 	AddGameObject<FIELD>(1);
 	{		AddGameObject<EntityEnemy>(3)->SetPosition(D3DXVECTOR3(10.0f, 4.0f, 0.0f));	}
 	{		AddGameObject<EntityEnemy>(3)->SetPosition(D3DXVECTOR3(35.0f, 0.0f, 0.0f));	}
-	AddGameObject<EntityPlayer>(3)->SetPosition(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
-	AddGameObject<WEAPON>(3);
+	AddGameObject<PLAYER>(3)->SetPosition(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 	
-	for (int i = 0; i < 9; i++)
-	{
-		if (i < 5)
-		{		AddGameObject<ENEMY>(1)->SetPosition(D3DXVECTOR3(-15.0f + i * 5.0f, 1.0f, 10.0f));		}
-		else
-		{		AddGameObject<ENEMY>(1)->SetPosition(D3DXVECTOR3(-12.5f + (i - 5) * 5.0f, 1.0f, 5.0f));	}
+	//for (int i = 0; i < 9; i++)
+	//{
+	//	if (i < 5)
+	//	{		AddGameObject<ENEMY>(1)->SetPosition(D3DXVECTOR3(-15.0f + i * 5.0f, 1.0f, 10.0f));		}
+	//	else
+	//	{		AddGameObject<ENEMY>(1)->SetPosition(D3DXVECTOR3(-12.5f + (i - 5) * 5.0f, 1.0f, 5.0f));	}
 
-	}
+	//}
 
 	{
 		CYLINDER* cylinder = AddGameObject<CYLINDER>(1);

@@ -21,14 +21,9 @@
   <ItemGroup>
     <ClCompile Include="audio.cpp" />
     <ClCompile Include="box.cpp" />
-    <ClCompile Include="bullet.cpp" />
-    <ClCompile Include="bulletSplit.cpp" />
-    <ClCompile Include="bulletVortex.cpp" />
-    <ClCompile Include="bulletZig.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="cylinder.cpp" />
     <ClCompile Include="DrawCollision.cpp" />
-    <ClCompile Include="Ebullet.cpp" />
     <ClCompile Include="EffectKira.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="EntityEffect.cpp" />
@@ -58,7 +53,6 @@
     <ClCompile Include="TerrainBoxMove.cpp" />
     <ClCompile Include="title.cpp" />
     <ClCompile Include="titleLogo.cpp" />
-    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="audio.h" />
@@ -103,7 +97,6 @@
     <ClInclude Include="TerrainBoxMove.h" />
     <ClInclude Include="title.h" />
     <ClInclude Include="titleLogo.h" />
-    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader\common.hlsl">

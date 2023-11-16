@@ -2,15 +2,25 @@
 #include "renderer.h"
 #include "player.h"
 #include "input.h"
-#include "bullet.h"
-//#include "bulletSplit.h"
-//#include "bulletVortex.h"
-//#include "bulletZig.h"
+
 #include "manager.h"
 #include "scene.h"
 #include "cylinder.h"
 #include "box.h"
 #include "audio.h"
+
+#define DIRECTION_DISTANCE	(3.15f/2.0f)
+#define DIRECTION_W		( DIRECTION_DISTANCE * 0.5f)
+#define DIRECTION_WD	( DIRECTION_DISTANCE * 1.0f)
+#define DIRECTION_D		( DIRECTION_DISTANCE * 1.5f)
+#define DIRECTION_DS	( DIRECTION_DISTANCE * 2.0f)
+#define DIRECTION_S		( DIRECTION_DISTANCE * 2.5f)
+#define DIRECTION_SA	( DIRECTION_DISTANCE * 3.0f)
+#define DIRECTION_A		( DIRECTION_DISTANCE * 3.5f)
+#define DIRECTION_AW	( DIRECTION_DISTANCE * 4.0f)
+
+
+
 
 bool pushBulletKey = false;
 
@@ -22,6 +32,9 @@ void PLAYER::Init()
 	//m_Position	= D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	//m_Rotation	= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	//m_Scale		= D3DXVECTOR3(1.0f, 1.0f, 1.0f);
+
+	m_Velocity		= { 0.0f,0.0f,0.0f };
+	m_RotationAtk	= { 0.0f,0.0f,0.0f };
 
 	Renderer::CreateVertexShader(&m_VertexShader, &m_VertexLayout,
 		"shader\\vertexLightingVS.cso");
@@ -47,6 +60,7 @@ void PLAYER::Uninit()
 void PLAYER::Update()
 {
 	D3DXVECTOR3 oldPosition = m_Position;
+	m_Velocity = { 0.0f,0.0f,0.0f };
 
 	Scene* scene = Manager::GetScene();
 	////top view
@@ -67,26 +81,19 @@ void PLAYER::Update()
 	//{	m_Rotation.y += 0.1f;	}
 
 	//tps fps
-	if (Input::GetKeyPress('A'))
-	{	m_Position -= GetRight() * 0.1f;	}
-	if (Input::GetKeyPress('D'))
-	{	m_Position += GetRight() * 0.1f;	}
-	if (Input::GetKeyPress('W'))
-	{	m_Position += GetForward() * 0.1f;	}
-	if (Input::GetKeyPress('S'))
-	{	m_Position -= GetForward() * 0.1f;	}
 
-	if (Input::GetKeyPress('Q'))
-	{	m_Rotation.y -= 0.1f;	}
-	if (Input::GetKeyPress('E'))
-	{	m_Rotation.y += 0.1f;	}
+	PlayerRotMath();
+
+	//現在座標に移動ベクトルを足す
+	if (Input::GetKeyPress('W') || Input::GetKeyPress('A') || Input::GetKeyPress('S') || Input::GetKeyPress('D'))
+	{	m_Position += GetForward() * 0.1f;	}
+
+	m_Position += m_Velocity;
 
 	if (Input::GetKeyPress('G'))
 	{
 		if (!pushBulletKey)
 		{
-			//scene->AddGameObject<BULLET>(1)->SetPosition(m_Position+D3DXVECTOR3(0.0f,1.0f,0.0f));
-			scene->AddGameObject<BULLET>(1)->SetTransform
 			(m_Position + D3DXVECTOR3(0.0f, 1.0f, 0.0f)
 				, m_Rotation, D3DXVECTOR3(0.5f, 0.5f, 0.5f));
 			m_ShotSE->Play();
@@ -198,4 +205,32 @@ bool PLAYER::GetMoving()
 		moving = true;
 	}
 	return moving;
+}
+
+void PLAYER::PlayerRotMath()
+{
+	if (Input::GetKeyPress('A'))
+	{	m_Rotation.y = DIRECTION_A;	}
+
+	if (Input::GetKeyPress('D'))
+	{	m_Rotation.y = DIRECTION_D;	}
+
+	if (Input::GetKeyPress('W'))
+	{	m_Rotation.y = DIRECTION_W;	}
+
+	if (Input::GetKeyPress('S'))
+	{	m_Rotation.y = DIRECTION_S;	}
+
+	if (Input::GetKeyPress('A') && Input::GetKeyPress('W'))
+	{	m_Rotation.y = DIRECTION_AW;	}
+
+	if (Input::GetKeyPress('A') && Input::GetKeyPress('S'))
+	{	m_Rotation.y = DIRECTION_SA;	}
+
+	if (Input::GetKeyPress('D') && Input::GetKeyPress('W'))
+	{	m_Rotation.y = DIRECTION_WD;	}
+
+	if (Input::GetKeyPress('D') && Input::GetKeyPress('S'))
+	{	m_Rotation.y = DIRECTION_DS;	}
+
 }

@@ -14,8 +14,6 @@
 #include "box.h"
 #include "cylinder.h"
 
-#include "Weapon.h"
-
 #include "EntityEffect.h"
 #include "DrawCollision.h"
 
@@ -112,7 +110,6 @@ void EntityPlayer::Update()
 	D3DXVECTOR3 oldPosition = m_Position;
 
 	Scene* scene = Manager::GetScene();
-	WEAPON* weapon = scene->GetGameObject<WEAPON>();
 
 	if (m_Moving)
 	{	m_Count++;	}
@@ -120,24 +117,6 @@ void EntityPlayer::Update()
 	{
 		m_Count = 10;
 	}
-
-	if ((Input::GetKeyPress(VK_SHIFT)) && (!weapon->GetAiming()))
-	{		m_Dash = true;	}
-	else
-	{		m_Dash = false;	}
-
-	if (weapon->GetAiming())
-	{	m_Speed = 0.05f;	}
-	else
-	{	
-		if (m_Dash)
-		{	m_Speed = 0.2f;		}
-		else
-		{	m_Speed = 0.1f;		}
-	}
-
-
-
 	
 	if ((Input::GetKeyPress('A')))
 	{
@@ -289,13 +268,6 @@ void EntityPlayer::Update()
 		m_Position.y = groundHeight + m_Scale.y;
 		m_Velocity.y = 0.0f;
 	}
-
-	if (((Input::GetKeyPress('A'))|| (Input::GetKeyPress('A'))|| (Input::GetKeyPress('D'))|| (Input::GetKeyPress('D')))&&(!weapon->GetAiming()))
-	{	m_Moving = true;	}
-	else
-	{	
-		m_Velocity.x = 0.0f;
-		m_Moving = false;	}
 
 	D3DXVECTOR3 ShadowScale = m_Scale * (1.0f/(m_Position.y - groundHeight));
 	m_Shadow->SetPosition(D3DXVECTOR3(m_Position.x, groundHeight + 0.1f, m_Position.z));

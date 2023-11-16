@@ -14,7 +14,7 @@ void TITLELOGO::Init()
 		"shader\\unlitTexturePS.cso");
 
 	AddComponent<SPRITE>()
-		->Init(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT, "asset\\texture\\Title.JPG");
+		->Init(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT, "asset\\texture\\Title.dds");
 }
 
 void TITLELOGO::Uninit()

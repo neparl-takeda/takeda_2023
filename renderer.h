@@ -16,13 +16,13 @@ struct VERTEX_3D
 
 struct MATERIAL
 {
-	D3DXCOLOR	Ambient;
-	D3DXCOLOR	Diffuse;
-	D3DXCOLOR	Specular;
-	D3DXCOLOR	Emission;
-	float		Shininess;
-	BOOL		TextureEnable;
-	float		Dummy[2];
+	D3DXCOLOR	Ambient			= { 0.0f,0.0f,0.0f,0.0f };
+	D3DXCOLOR	Diffuse			= { 0.0f,0.0f,0.0f,0.0f };
+	D3DXCOLOR	Specular		= { 0.0f,0.0f,0.0f,0.0f };
+	D3DXCOLOR	Emission		= { 0.0f,0.0f,0.0f,0.0f };
+	float		Shininess		= {};
+	BOOL		TextureEnable	= {};
+	float		Dummy[2]		= {};
 };
 
 

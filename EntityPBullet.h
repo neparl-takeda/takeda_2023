@@ -3,7 +3,7 @@
 //#include <D3DX11.h>
 #include "gameObject.h"
 
-static enum BULLET_TYPE
+enum BULLET_TYPE
 {
 	TYPE_SHURIKEN = 0,
 	TYPE_KUNAI=1,

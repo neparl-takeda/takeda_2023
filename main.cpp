@@ -44,11 +44,11 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 		RegisterClassEx(&wcex);
 
 
-		int width = GetSystemMetrics(SM_CXSCREEN);
-		int height = GetSystemMetrics(SM_CYSCREEN);
-		RECT rc = { 0, 0, (LONG)width, (LONG)height };
+		//int width = GetSystemMetrics(SM_CXSCREEN);
+		//int height = GetSystemMetrics(SM_CYSCREEN);
+		//RECT rc = { 0, 0, (LONG)width, (LONG)height };
 
-		//RECT rc = { 0, 0, (LONG)SCREEN_WIDTH, (LONG)SCREEN_HEIGHT };
+		RECT rc = { 0, 0, (LONG)SCREEN_WIDTH, (LONG)SCREEN_HEIGHT };
 		//RECT rc = { 0, 0, (LONG)1920.0f, (LONG)1080 };
 	
 		AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
@@ -123,14 +123,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	//ウィンドウ自動アクティブ + フルスクリーン化
 	if (!On)
 	{
-		SetActiveWindow(hWnd);
-		SetMenu(hWnd, NULL);
-		SetWindowLong(hWnd, GWL_STYLE, WS_VISIBLE | WS_POPUP);
-		MoveWindow(hWnd,
-			GetSystemMetrics(SM_XVIRTUALSCREEN),
-			GetSystemMetrics(SM_YVIRTUALSCREEN),
-			GetSystemMetrics(SM_CXVIRTUALSCREEN),
-			GetSystemMetrics(SM_CYVIRTUALSCREEN), TRUE);
+		//SetActiveWindow(hWnd);
+		//SetMenu(hWnd, NULL);
+		//SetWindowLong(hWnd, GWL_STYLE, WS_VISIBLE | WS_POPUP);
+		//MoveWindow(hWnd,
+		//	GetSystemMetrics(SM_XVIRTUALSCREEN),
+		//	GetSystemMetrics(SM_YVIRTUALSCREEN),
+		//	GetSystemMetrics(SM_CXVIRTUALSCREEN),
+		//	GetSystemMetrics(SM_CYVIRTUALSCREEN), TRUE);
 		On = true;
 	}
 

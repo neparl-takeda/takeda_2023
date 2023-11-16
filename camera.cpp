@@ -5,8 +5,8 @@
 #include "player.h"
 #include "scene.h"
 #include "manager.h"
-#include "EntityPlayer.h"
-#include "Weapon.h"
+
+#define CAMERA_DISTANCE (15.0f)
 
 void CAMERA::Init()
 {
@@ -20,8 +20,7 @@ void CAMERA::Init()
 void CAMERA::Update()
 {
 	Scene* scene = Manager::GetScene();
-	EntityPlayer*	player = scene->GetGameObject<EntityPlayer>();
-	WEAPON*			weapon = scene->GetGameObject<WEAPON>();
+	PLAYER*	player = scene->GetGameObject<PLAYER>();
 	//トップ
 	//m_Target = player->GetPosition();
 	//m_Position = m_Target + D3DXVECTOR3(0.0f, 5.0f, 0.0f);
@@ -33,27 +32,20 @@ void CAMERA::Update()
 	//	+ D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	//m_Position = m_Target - player->GetForward() * 20.0f 
 	//	+ D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	if (weapon->GetAiming())
-	{
-		if (m_Position.z <= player->GetPosition().z-24.0f)
-		{
-			m_Position.z += m_Velocity.z;
-		}
-	}
-	else if (m_Position.z >= player->GetPosition().z - 25.0f)
-	{
-		m_Position.z -= m_Velocity.z;
-	}
 
 	float y = player->GetPosition().y + 1.0f;
 
-	if (player->GetSneak())
-	{
-		y += PLAYER_SIZEY / 4.0f;
-	}
-
-	m_Position = D3DXVECTOR3(player->GetPosition().x, y, m_Position.z);
-	m_Target = D3DXVECTOR3(player->GetPosition().x, m_Position.y, 0.0f);
+	//if (player->GetSneak())
+	//{
+	//	y += PLAYER_SIZEY / 4.0f;
+	//}
+	D3DXVECTOR3 pPos = player->GetPosition();
+	//pPos.x -= CAMERA_DISTANCE;
+	pPos.x -= CAMERA_DISTANCE;
+	pPos.y += CAMERA_DISTANCE;
+	pPos.z -= CAMERA_DISTANCE;
+	m_Position = D3DXVECTOR3(pPos.x, pPos.y, pPos.z);
+	m_Target = D3DXVECTOR3(player->GetPosition());
 
 	////ファーストパーソン
 	//m_Position = player->GetPosition()
@@ -84,7 +76,7 @@ void CAMERA::Draw()
 D3DXVECTOR3 CAMERA::CameraShake()
 {
 	
-	m_ShakeVe.y * 1.01f;
+	//m_ShakeVe.y * 1.01f;
 
 	if (m_ShakeVe.y > 0.3f)
 	{

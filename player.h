@@ -15,6 +15,7 @@ private:
 	ID3D11InputLayout* m_VertexLayout{};
 
 	D3DXVECTOR3 m_Velocity{};
+	D3DXVECTOR3 m_RotationAtk{};
 
 	class Audio* m_ShotSE{};
 
@@ -24,5 +25,6 @@ public:
 	void Update();
 	void Draw();
 	bool GetMoving();
+	void PlayerRotMath();
 };
 

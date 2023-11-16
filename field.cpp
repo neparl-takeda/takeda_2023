@@ -3,6 +3,7 @@
 #include "field.h"
 
 #define	FIELD_SIZE (90.0f)
+#define FIELD_DEF_ROTATE (-(315.0f/2.0f))
 
 void FIELD::Init()
 {
@@ -44,7 +45,7 @@ void FIELD::Init()
 
 	//テクスチャ読み込み
 	D3DX11CreateShaderResourceViewFromFile(Renderer::GetDevice(),
-		"asset\\texture\\tile01.png",
+		"asset\\texture\\tile02.dds",
 		NULL,
 		NULL,
 		&m_Texture,
@@ -56,6 +57,8 @@ void FIELD::Init()
 
 	Renderer::CreatePixelShader(&m_PixelShader,
 		"shader\\vertexLightingPS.cso");
+
+	//m_Rotation.y = FIELD_DEF_ROTATE;
 }
 
 void FIELD::Uninit()

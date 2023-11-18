@@ -3,11 +3,14 @@
 #include "gameObject.h"
 #include "model.h"
 
+class ComponentMarker;
+
 class PLAYER : public GameObject
 {
 
 private:
 
+	ComponentMarker* m_Marker;
 	Model* m_Model{};
 
 	ID3D11VertexShader* m_VertexShader{};
@@ -20,10 +23,10 @@ private:
 	class Audio* m_ShotSE{};
 
 public:
-	void Init();
-	void Uninit();
-	void Update();
-	void Draw();
+	void Init()		override;
+	void Uninit()	override;
+	void Update()	override;
+	void Draw()		override;
 	bool GetMoving();
 	void PlayerRotMath();
 };

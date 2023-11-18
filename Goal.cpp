@@ -3,8 +3,8 @@
 #include "Goal.h"
 #include "manager.h"
 #include "scene.h"
-#include "EntityPlayer.h"
 #include "title.h"
+#include "player.h"
 
 void GOAL::Init()
 {
@@ -37,29 +37,18 @@ void GOAL::Uninit()
 
 void GOAL::Update()
 {
-	//m_Position += GetForward() * m_Velocity.z;
-
-	//if ((m_Position.z > 20.0f) || (m_Position.z < -20.0f) || (m_Position.x > 20.0f) || (m_Position.x < -20.0f))
-	//{
-	//	SetDestroy();
-	//}
 	m_Rotation.y += 50.0f;
 
 	Scene* scene = Manager::GetScene();
-	std::vector<EntityPlayer*> players = scene->GetGameObjects<EntityPlayer>();
-	for (EntityPlayer* player : players)
+	std::vector<PLAYER*> players = scene->GetGameObjects<PLAYER>();
+	for (PLAYER* player : players)
 	{
 		D3DXVECTOR3 playerPos = player->GetPosition();
 		D3DXVECTOR3 direction = playerPos - m_Position;
 		float length = D3DXVec3Length(&direction);
 
 		if (length < 1.5f)
-		{
-			m_Clear = true;
-			//Manager::SetScene<SCENE_TITLE>();
-			//return;
-		}
-
+		{	m_Clear = true;	}
 	}
 }
 

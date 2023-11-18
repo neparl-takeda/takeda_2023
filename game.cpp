@@ -12,7 +12,6 @@
 #include "Score.h"
 #include "player.h"
 #include "enemy.h"
-#include "bullet.h"
 #include "explosion.h"
 
 #include "cylinder.h"
@@ -22,24 +21,22 @@
 #include "Goal.h"
 #include "life.h"
 #include "audio.h"
-#include "EntityPBullet.h"
-#include "EntityEnemy.h"
+#include "ComponentMarker.h"
 #include "EntityEffect.h"
 #include "SkyDome.h"
-#include "DrawCollision.h"
 #include "fade.h"
 
 void SCENE_GAME::Init()
 {
 	//テクスチャ読み込み
-	EntityPBullet::Load();
 	EntityEffect::Load();
 
 	AddGameObject<CAMERA>(0);
 	AddGameObject<FIELD>(1);
-	{		AddGameObject<EntityEnemy>(3)->SetPosition(D3DXVECTOR3(10.0f, 4.0f, 0.0f));	}
-	{		AddGameObject<EntityEnemy>(3)->SetPosition(D3DXVECTOR3(35.0f, 0.0f, 0.0f));	}
-	AddGameObject<PLAYER>(3)->SetPosition(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+	PLAYER* player = AddGameObject<PLAYER>(3);
+	player->SetPosition(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+	//player->AddComponent<ComponentMarker>();
+	//AddGameObject<PLAYER>(3)->SetPosition(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 	
 	//for (int i = 0; i < 9; i++)
 	//{
@@ -136,6 +133,5 @@ void SCENE_GAME::Update()
 void SCENE_GAME::Uninit()
 {
 	Scene::Uninit();
-	EntityPBullet::Unload();
 	EntityEffect::Unload();
 }

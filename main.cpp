@@ -9,7 +9,7 @@
 bool On = false;
 
 const char* CLASS_NAME = "AppClass";
-const char* WINDOW_NAME = "AT13A114_28_武田奏楽_学内コンテスト";
+const char* WINDOW_NAME = "AT13A114_28_武田奏楽";
 
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);

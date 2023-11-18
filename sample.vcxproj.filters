@@ -7,23 +7,11 @@
     <Filter Include="ソースファイル">
       <UniqueIdentifier>{2490f17a-3427-4cb7-94a6-c4cc2ad42ed8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソースファイル\bullets">
-      <UniqueIdentifier>{c2b88194-8f56-4d61-a025-0d2cfad923c0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソースファイル\scenes">
       <UniqueIdentifier>{6af9edd6-c4a9-43c4-af5b-9ffe850afcd5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダーファイル\bullets">
-      <UniqueIdentifier>{20257745-6c42-4ed2-8ff3-0fae96395cbf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダーファイル\scenes">
-      <UniqueIdentifier>{09c08217-e855-4f33-84c9-ad280f254183}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソースファイル\Entity">
       <UniqueIdentifier>{296694ff-36de-4feb-90f7-04e6d2f09338}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダーファイル\Entity">
-      <UniqueIdentifier>{c746c900-3c61-4f67-86d7-4de72b4e12e1}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソースファイル\Shader">
       <UniqueIdentifier>{23c191a3-130c-4860-9824-483f7aa3fc11}</UniqueIdentifier>
@@ -31,8 +19,8 @@
     <Filter Include="ソースファイル\Terrain">
       <UniqueIdentifier>{b4ad9de7-a7cc-45e0-930a-e6c99364117d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダーファイル\Terrain">
-      <UniqueIdentifier>{c4a5ec32-966b-4bd4-92fb-c9891fa4767d}</UniqueIdentifier>
+    <Filter Include="ソースファイル\Component">
+      <UniqueIdentifier>{39af3a75-44cb-403f-b7a9-458fb65ada0b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -57,13 +45,7 @@
     <ClCompile Include="model.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
-    <ClCompile Include="player.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
     <ClCompile Include="sprite.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="enemy.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="input.cpp">
@@ -99,26 +81,11 @@
     <ClCompile Include="game.cpp">
       <Filter>ソースファイル\scenes</Filter>
     </ClCompile>
-    <ClCompile Include="audio.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
     <ClCompile Include="life.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="EntityEffect.cpp">
       <Filter>ソースファイル\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="EntityPBullet.cpp">
-      <Filter>ソースファイル\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="EntityPlayer.cpp">
-      <Filter>ソースファイル\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="EntityEnemy.cpp">
-      <Filter>ソースファイル\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="DrawCollision.cpp">
-      <Filter>ソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="fade.cpp">
       <Filter>ソースファイル</Filter>
@@ -135,8 +102,17 @@
     <ClCompile Include="TerrainBoxMove.cpp">
       <Filter>ソースファイル\Terrain</Filter>
     </ClCompile>
-    <ClCompile Include="EntityShuri.cpp">
+    <ClCompile Include="player.cpp">
       <Filter>ソースファイル\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy.cpp">
+      <Filter>ソースファイル\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentMarker.cpp">
+      <Filter>ソースファイル\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="audio.cpp">
+      <Filter>ソースファイル\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -161,21 +137,6 @@
     <ClInclude Include="model.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
-    <ClInclude Include="player.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="gameObject.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="scene.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="component.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="enemy.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
     <ClInclude Include="input.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
@@ -194,77 +155,65 @@
     <ClInclude Include="Goal.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
-    <ClInclude Include="bullet.h">
-      <Filter>ヘッダーファイル\bullets</Filter>
-    </ClInclude>
-    <ClInclude Include="bulletSplit.h">
-      <Filter>ヘッダーファイル\bullets</Filter>
-    </ClInclude>
-    <ClInclude Include="bulletVortex.h">
-      <Filter>ヘッダーファイル\bullets</Filter>
-    </ClInclude>
-    <ClInclude Include="bulletZig.h">
-      <Filter>ヘッダーファイル\bullets</Filter>
-    </ClInclude>
-    <ClInclude Include="titleLogo.h">
-      <Filter>ヘッダーファイル\scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="title.h">
-      <Filter>ヘッダーファイル\scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="ResultLogo.h">
-      <Filter>ヘッダーファイル\scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="result.h">
-      <Filter>ヘッダーファイル\scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="game.h">
-      <Filter>ヘッダーファイル\scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="audio.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
     <ClInclude Include="life.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Ebullet.h">
-      <Filter>ヘッダーファイル\bullets</Filter>
-    </ClInclude>
     <ClInclude Include="sprite.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="EntityEffect.h">
-      <Filter>ヘッダーファイル\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="EntityPlayer.h">
-      <Filter>ヘッダーファイル\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="EntityPBullet.h">
-      <Filter>ヘッダーファイル\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="EntityEnemy.h">
-      <Filter>ヘッダーファイル\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawCollision.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
     <ClInclude Include="fade.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
+    <ClInclude Include="enemy.h">
+      <Filter>ソースファイル\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityEffect.h">
+      <Filter>ソースファイル\Entity</Filter>
+    </ClInclude>
     <ClInclude Include="EntityShadow.h">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>ソースファイル\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="gameObject.h">
+      <Filter>ソースファイル\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>ソースファイル\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="game.h">
+      <Filter>ソースファイル\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="result.h">
+      <Filter>ソースファイル\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultLogo.h">
+      <Filter>ソースファイル\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="title.h">
+      <Filter>ソースファイル\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="titleLogo.h">
+      <Filter>ソースファイル\scenes</Filter>
     </ClInclude>
     <ClInclude Include="box.h">
-      <Filter>ヘッダーファイル\Terrain</Filter>
+      <Filter>ソースファイル\Terrain</Filter>
     </ClInclude>
     <ClInclude Include="cylinder.h">
-      <Filter>ヘッダーファイル\Terrain</Filter>
+      <Filter>ソースファイル\Terrain</Filter>
     </ClInclude>
     <ClInclude Include="TerrainBoxMove.h">
-      <Filter>ヘッダーファイル\Terrain</Filter>
+      <Filter>ソースファイル\Terrain</Filter>
     </ClInclude>
-    <ClInclude Include="EntityShuri.h">
-      <Filter>ヘッダーファイル\Entity</Filter>
+    <ClInclude Include="component.h">
+      <Filter>ソースファイル\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="audio.h">
+      <Filter>ソースファイル\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentMarker.h">
+      <Filter>ソースファイル\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="scene.h">
+      <Filter>ソースファイル\scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

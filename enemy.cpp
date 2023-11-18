@@ -3,7 +3,6 @@
 #include "enemy.h"
 #include "scene.h"
 #include "manager.h"
-#include "Ebullet.h"
 
 void ENEMY::Init()
 {
@@ -37,16 +36,7 @@ void ENEMY::Uninit()
 
 void ENEMY::Update()
 {
-	Scene* scene = Manager::GetScene();
-
-	m_Count++;
-	//if (m_Count % 100 == 0)
-	//{
-	//	scene->AddGameObject<E_BULLET>(1)->SetTransform
-	//	(m_Position + D3DXVECTOR3(0.0f, 1.0f, 0.0f)
-	//		, m_Rotation, D3DXVECTOR3(0.5f, 0.5f, 0.5f));
-	//}
-
+	
 }
 
 void ENEMY::Draw()

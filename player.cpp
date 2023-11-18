@@ -8,6 +8,7 @@
 #include "cylinder.h"
 #include "box.h"
 #include "audio.h"
+#include "ComponentMarker.h"
 
 #define DIRECTION_DISTANCE	(3.15f/2.0f)
 #define DIRECTION_W		( DIRECTION_DISTANCE * 0.5f)
@@ -19,19 +20,11 @@
 #define DIRECTION_A		( DIRECTION_DISTANCE * 3.5f)
 #define DIRECTION_AW	( DIRECTION_DISTANCE * 4.0f)
 
-
-
-
-bool pushBulletKey = false;
-
 void PLAYER::Init()
 {
+	GameObject::Init();
 	m_Model = new Model();
-	m_Model->Load("asset\\model\\player.obj");
-
-	//m_Position	= D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-	//m_Rotation	= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	//m_Scale		= D3DXVECTOR3(1.0f, 1.0f, 1.0f);
+	m_Model->Load("asset\\model\\box.obj");
 
 	m_Velocity		= { 0.0f,0.0f,0.0f };
 	m_RotationAtk	= { 0.0f,0.0f,0.0f };
@@ -44,10 +37,18 @@ void PLAYER::Init()
 
 	m_ShotSE = AddComponent<Audio>();
 	m_ShotSE->Load("asset\\sound\\SE_bullet.wav");
+
+	m_Marker = new ComponentMarker;
+	if (m_Marker != nullptr)
+	{	
+		m_Marker->Init();	
+		m_Marker->SetColor(D3DXCOLOR(0.5f, 0.8f, 1.0f, 1.0f));
+	}
 }
 
 void PLAYER::Uninit()
 {
+	m_Marker->Uninit();
 	m_Model->Unload();
 
 	m_VertexLayout->Release();
@@ -59,55 +60,29 @@ void PLAYER::Uninit()
 
 void PLAYER::Update()
 {
+	GameObject:: Update();
+	
 	D3DXVECTOR3 oldPosition = m_Position;
 	m_Velocity = { 0.0f,0.0f,0.0f };
 
 	Scene* scene = Manager::GetScene();
-	////top view
-	//if (Input::GetKeyPress('A'))
-	//{	m_Position.x -= 0.1f;
-	//	m_Rotation.y = -D3DX_PI * 0.5f;	}
-	//if (Input::GetKeyPress('D'))
-	//{	m_Position.x += 0.1f;
-	//	m_Rotation.y = D3DX_PI * 0.5f;	}
-	//if (Input::GetKeyPress('W'))
-	//{	m_Position.z += 0.1f;	}
-	//if (Input::GetKeyPress('S'))
-	//{	m_Position.z -= 0.1f;	}
-
-	//if (Input::GetKeyPress('Q'))
-	//{	m_Rotation.y -= 0.1f;	}
-	//if (Input::GetKeyPress('E'))
-	//{	m_Rotation.y += 0.1f;	}
-
-	//tps fps
 
 	PlayerRotMath();
 
 	//現在座標に移動ベクトルを足す
-	if (Input::GetKeyPress('W') || Input::GetKeyPress('A') || Input::GetKeyPress('S') || Input::GetKeyPress('D'))
+	if(GetMoving())
 	{	m_Position += GetForward() * 0.1f;	}
 
-	m_Position += m_Velocity;
-
-	if (Input::GetKeyPress('G'))
+	if (m_Marker != nullptr)
 	{
-		if (!pushBulletKey)
-		{
-			(m_Position + D3DXVECTOR3(0.0f, 1.0f, 0.0f)
-				, m_Rotation, D3DXVECTOR3(0.5f, 0.5f, 0.5f));
-			m_ShotSE->Play();
-		}
-		pushBulletKey = true;	
+		m_Marker->Update();
+		m_Marker->SetRotation(m_Rotation);
+		m_Marker->SetPosition(m_Position);
 	}
-
-	if (!Input::GetKeyPress('G'))
-	{	pushBulletKey = false;	}
+	m_Position += m_Velocity;
 
 	//衝突判定
 	float groundHeight = 0.0f;
-
-
 		//cylinder
 		std::vector<CYLINDER*> cylinders = scene->GetGameObjects<CYLINDER>();
 		for (CYLINDER* cylinder : cylinders)
@@ -176,6 +151,10 @@ void PLAYER::Update()
 
 void PLAYER::Draw()
 {
+	GameObject:: Draw();
+
+	m_Marker->Draw();
+
 	//入力レイアウト設定
 	Renderer::GetDeviceContext()->IASetInputLayout(m_VertexLayout);
 

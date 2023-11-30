@@ -114,6 +114,9 @@
     <ClCompile Include="audio.cpp">
       <Filter>ソースファイル\Component</Filter>
     </ClCompile>
+    <ClCompile Include="AttackBox.cpp">
+      <Filter>ソースファイル\Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="renderer.h">
@@ -214,6 +217,9 @@
     </ClInclude>
     <ClInclude Include="scene.h">
       <Filter>ソースファイル\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackBox.h">
+      <Filter>ソースファイル\Entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

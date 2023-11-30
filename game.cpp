@@ -35,23 +35,6 @@ void SCENE_GAME::Init()
 	AddGameObject<FIELD>(1);
 	PLAYER* player = AddGameObject<PLAYER>(3);
 	player->SetPosition(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
-	//player->AddComponent<ComponentMarker>();
-	//AddGameObject<PLAYER>(3)->SetPosition(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
-	
-	//for (int i = 0; i < 9; i++)
-	//{
-	//	if (i < 5)
-	//	{		AddGameObject<ENEMY>(1)->SetPosition(D3DXVECTOR3(-15.0f + i * 5.0f, 1.0f, 10.0f));		}
-	//	else
-	//	{		AddGameObject<ENEMY>(1)->SetPosition(D3DXVECTOR3(-12.5f + (i - 5) * 5.0f, 1.0f, 5.0f));	}
-
-	//}
-
-	{
-		CYLINDER* cylinder = AddGameObject<CYLINDER>(1);
-		cylinder->SetPosition(D3DXVECTOR3(10.0f, 0.0f, 0.0f));
-		cylinder->SetScale(D3DXVECTOR3(4.0f, 4.0f, 4.0f));
-	}
 
 	GOAL* goal = AddGameObject<GOAL>(1);
 	goal->SetPosition(D3DXVECTOR3(60.5f, 7.0f, 0.0f));
@@ -78,11 +61,7 @@ void SCENE_GAME::Init()
 		box->SetPosition(D3DXVECTOR3(50.0f, 6.0f, 0.0f));
 		box->SetScale(D3DXVECTOR3(2.0f, 2.0f, 2.0f));
 	}
-	{
-		TerrainBoxMove* box = AddGameObject<TerrainBoxMove>(1);
-		box->SetPosition(D3DXVECTOR3(-25.0f, 0.0f, 0.0f));
-		box->SetScale(D3DXVECTOR3(2.0f, 2.0f, 2.0f));
-	}
+
 
 	AddGameObject<SKY>(1)->SetPosition(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 

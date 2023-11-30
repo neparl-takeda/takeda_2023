@@ -9,6 +9,7 @@
 #include "box.h"
 #include "audio.h"
 #include "ComponentMarker.h"
+#include "AttackBox.h"
 
 #define DIRECTION_DISTANCE	(3.15f/2.0f)
 #define DIRECTION_W		( DIRECTION_DISTANCE * 0.5f)
@@ -19,6 +20,8 @@
 #define DIRECTION_SA	( DIRECTION_DISTANCE * 3.0f)
 #define DIRECTION_A		( DIRECTION_DISTANCE * 3.5f)
 #define DIRECTION_AW	( DIRECTION_DISTANCE * 4.0f)
+
+#define ATTACK_COUNT	(16)
 
 void PLAYER::Init()
 {
@@ -38,11 +41,19 @@ void PLAYER::Init()
 	m_ShotSE = AddComponent<Audio>();
 	m_ShotSE->Load("asset\\sound\\SE_bullet.wav");
 
+
 	m_Marker = new ComponentMarker;
 	if (m_Marker != nullptr)
 	{	
 		m_Marker->Init();	
 		m_Marker->SetColor(D3DXCOLOR(0.5f, 0.8f, 1.0f, 1.0f));
+	}
+
+
+	m_Attack = new AttackBox;
+	if (m_Attack != nullptr)
+	{
+		m_Attack->Init();
 	}
 }
 
@@ -69,19 +80,41 @@ void PLAYER::Update()
 
 	PlayerRotMath();
 
-	//現在座標に移動ベクトルを足す
-	if(GetMoving())
-	{	m_Position += GetForward() * 0.1f;	}
+	//移動処理
+	//----------------------------------------------------------------------------------
+	if (m_Attack != nullptr)
+	{
+		if ((GetMoving()) && (!m_Attack->GetActive()))
+		{	m_Position += GetForward() * 0.1f;	}
+	}
+	m_Position += m_Velocity;
 
+	//マーカー
+	//----------------------------------------------------------------------------------
 	if (m_Marker != nullptr)
 	{
 		m_Marker->Update();
 		m_Marker->SetRotation(m_Rotation);
 		m_Marker->SetPosition(m_Position);
 	}
-	m_Position += m_Velocity;
+	
+	//攻撃
+	//----------------------------------------------------------------------------------
+	if (m_Attack != nullptr)
+	{
+		if (Input::GetKeyTrigger('V'))
+		{
+			D3DXVECTOR3 pos		= { m_Position.x,m_Position.y + m_Scale.y / 2.0f,m_Position.z };
+			D3DXVECTOR3 scale	= { 1.0f,0.5f,0.5f };
+			pos += GetForward()* m_Scale.z*2;
+			m_Attack->SetActive(pos, scale, m_Rotation, ATTACK_COUNT);
+		}
+		m_Attack->Update();
+	}
+
 
 	//衝突判定
+	//----------------------------------------------------------------------------------
 	float groundHeight = 0.0f;
 		//cylinder
 		std::vector<CYLINDER*> cylinders = scene->GetGameObjects<CYLINDER>();
@@ -152,7 +185,6 @@ void PLAYER::Update()
 void PLAYER::Draw()
 {
 	GameObject:: Draw();
-
 	m_Marker->Draw();
 
 	//入力レイアウト設定
@@ -171,6 +203,7 @@ void PLAYER::Draw()
 	Renderer::SetWorldMatrix(&world);
 
 	m_Model->Draw();
+	m_Attack->Draw();
 }
 
 bool PLAYER::GetMoving()

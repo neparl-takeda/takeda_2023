@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AttackBox.cpp" />
     <ClCompile Include="audio.cpp" />
     <ClCompile Include="box.cpp" />
     <ClCompile Include="camera.cpp" />
@@ -51,6 +52,7 @@
     <ClCompile Include="titleLogo.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AttackBox.h" />
     <ClInclude Include="audio.h" />
     <ClInclude Include="box.h" />
     <ClInclude Include="camera.h" />

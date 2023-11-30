@@ -4,6 +4,7 @@
 #include "model.h"
 
 class ComponentMarker;
+class AttackBox;
 
 class PLAYER : public GameObject
 {
@@ -11,6 +12,7 @@ class PLAYER : public GameObject
 private:
 
 	ComponentMarker* m_Marker;
+	AttackBox*		 m_Attack;
 	Model* m_Model{};
 
 	ID3D11VertexShader* m_VertexShader{};
